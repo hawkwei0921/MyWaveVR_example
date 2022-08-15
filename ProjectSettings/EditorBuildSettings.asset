@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: 653a9805d81f9ab459235dee9451d73d
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: a738d059cf1054641805e1580bb9ed7c
+  - enabled: 1
+    path: Assets/Scenes/MyScene0.unity
+    guid: aed3d2190094c6d408299750deab82e5
+  - enabled: 1
+    path: Assets/Scenes/MyScene1.unity
+    guid: 7a715e4d707f8d54e9fc7bb08197d729
+  - enabled: 1
+    path: Assets/Scenes/MyScene2.unity
+    guid: f5aa85485e637a84b9c8f6d9c4fb907c
+  - enabled: 0
+    path: Assets/Scenes/TestUMP.unity
+    guid: 6f0bb76742989984d813d224f9c249f9
+  m_configObjects:
+    com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: 161620c80ec79b04eb88fd360dd5d9d4,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 285621c3f8b163147838270a0bdb0df7,
+      type: 2}

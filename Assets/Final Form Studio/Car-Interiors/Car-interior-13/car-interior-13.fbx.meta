@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: 846a5b40e75f7834ba9c34037ae1f31d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Buttons
+    100002: //RootNode
+    100004: dashboard
+    100006: gauges
+    100008: glass
+    100010: indicator-rpm
+    100012: indicator-speed
+    100014: interior
+    100016: mirror-left
+    100018: mirror-middle
+    100020: mirror-right
+    100022: steering-wheel
+    400000: Buttons
+    400002: //RootNode
+    400004: dashboard
+    400006: gauges
+    400008: glass
+    400010: indicator-rpm
+    400012: indicator-speed
+    400014: interior
+    400016: mirror-left
+    400018: mirror-middle
+    400020: mirror-right
+    400022: steering-wheel
+    2100000: No Name
+    2100002: 01 - Default
+    2100004: 02 - Default
+    2100006: 03 - Default
+    2100008: sdfs
+    2100010: 04 - Default
+    2300000: Buttons
+    2300002: dashboard
+    2300004: gauges
+    2300006: glass
+    2300008: indicator-rpm
+    2300010: indicator-speed
+    2300012: interior
+    2300014: mirror-left
+    2300016: mirror-middle
+    2300018: mirror-right
+    2300020: steering-wheel
+    3300000: Buttons
+    3300002: dashboard
+    3300004: gauges
+    3300006: glass
+    3300008: indicator-rpm
+    3300010: indicator-speed
+    3300012: interior
+    3300014: mirror-left
+    3300016: mirror-middle
+    3300018: mirror-right
+    3300020: steering-wheel
+    4300000: glass
+    4300002: interior
+    4300004: dashboard
+    4300006: gauges
+    4300008: indicator-speed
+    4300010: indicator-rpm
+    4300012: mirror-left
+    4300014: steering-wheel
+    4300016: Buttons
+    4300018: mirror-middle
+    4300020: mirror-right
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
