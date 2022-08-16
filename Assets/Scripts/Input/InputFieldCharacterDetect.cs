@@ -12,25 +12,12 @@ namespace Hubble.Launcher.Input
     {
 		private static string LOG_TAG = "InputFieldCharacterDetect";
 
-		static string getParentGOname(GameObject currentGO)
-		{
-			if (currentGO.gameObject.transform.parent != null)
-			{
-				var parentGameObject = currentGO.gameObject.transform.parent.gameObject;
-				if (parentGameObject != null)
-				{
-					return parentGameObject.transform.name;
-				}
-			}
-			return null;
-		}
-
 		static public int getCharacterLimit(GameObject currentGO) // BUG: use TMP .characterLimit will crash for unknown reason, so I use this detection to limit input char.
 		{
 			int charLimit = 99;
 			if (currentGO.transform.name.Equals("InputField"))
 			{
-				string parentGOName = getParentGOname(currentGO);
+				string parentGOName = Utils.GameObjectUtils.getParentGOname(currentGO);
 				switch (parentGOName)
 				{
 					case "CodeInputPanel": // BT

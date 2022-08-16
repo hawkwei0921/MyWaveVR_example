@@ -9,31 +9,33 @@
 // specifications, and documentation provided by HTC to You."
 
 using System.Text;
-using TMPro;
-// using Vuplex.WebView;
 using UnityEngine;
 using Wave.Essence;
 using Wave.Native;
-
+using UnityEngine.UI;
+#if VUPLEX
+using Vuplex.WebView;
+#endif
 namespace Hubble.Launcher.Input
 {
-	public class IMEManagerServer : MonoBehaviour
+	public class IMEManagerServerOLD : MonoBehaviour
 	{
 		static private bool bDebug = true;
-		static public IMEManagerServer s_IMEManagerServer;
-		private TMP_InputField m_InputField;
-		private static string LOG_TAG = "IMEManagerServer";
+		static public IMEManagerServerOLD s_IMEManagerServer;
+		private InputField m_InputField;
+#if VUPLEX
+		private CanvasWebViewPrefab m_Webview;
+#endif
+		private static string LOG_TAG = "IMEManagerServerOLD";
 		private IMEManagerWrapper2 mIMEWrapper;
 		private string mInputContent = null;
 		private StringBuilder onInputClickedSB;
 		private string focusGOParentGOname;
-#if VUPLEX
-		private CanvasWebViewPrefab m_Webview;
-#endif
+
 		private bool mIsShowKeyboardInputPanel = true;
 		void Start()
 		{
-			s_IMEManagerServer = gameObject.GetComponent<IMEManagerServer>();
+			s_IMEManagerServer = gameObject.GetComponent<IMEManagerServerOLD>();
 			mIMEWrapper = IMEManagerWrapper2.GetInstance();
 		}
 		public void setCallbacks()
@@ -44,7 +46,7 @@ namespace Hubble.Launcher.Input
 
 		public void setCallbacks(GameObject GO)
 		{
-			IMEManagerClient inputClient;
+			IMEManagerClientOLD inputClient;
 			inputClient = GetIMEClient(GO);
 
 			if (inputClient != null)
@@ -60,12 +62,12 @@ namespace Hubble.Launcher.Input
 			}
 		}
 
-		private TMP_InputField GetInputField(GameObject GO)
+		private InputField GetInputField(GameObject GO)
 		{
 			if (bDebug) Log.d(LOG_TAG, "GetInputField() +++");
 			if (GO != null)
 			{
-				TMP_InputField inputObj = GO.GetComponent<TMP_InputField>();
+				InputField inputObj = GO.GetComponent<InputField>();
 
 				return inputObj;
 			}
@@ -78,16 +80,16 @@ namespace Hubble.Launcher.Input
 			return null;
 		}
 
-		private TMP_InputField GetInputField(string name)
+		private InputField GetInputField(string name)
 		{
-			TMP_InputField inputObj = GameObject.Find(name).GetComponent<TMP_InputField>();
+			InputField inputObj = GameObject.Find(name).GetComponent<InputField>();
 			return inputObj;
 		}
 
-		private IMEManagerClient GetIMEClient(GameObject GO)
+		private IMEManagerClientOLD GetIMEClient(GameObject GO)
 		{
 			if (bDebug) Log.d(LOG_TAG, "GetIMEScript() +++");
-			IMEManagerClient inputClient = GO.GetComponent<IMEManagerClient>();
+			IMEManagerClientOLD inputClient = GO.GetComponent<IMEManagerClientOLD>();
 			return inputClient;
 		}
 
@@ -117,12 +119,14 @@ namespace Hubble.Launcher.Input
 				if (bDebug) Log.e(LOG_TAG, "s_InputGameObject=" + GO + " m_InputField == " + m_InputField);
 			}
 			mIMEWrapper.SetTitle("Input...");
-			if (m_InputField.contentType == TMP_InputField.ContentType.Password)
+			if (m_InputField.contentType == InputField.ContentType.Password)
 				mIMEWrapper.SetLocale(IMEManagerWrapper2.Locale.Password);
-			else if (m_InputField.contentType == TMP_InputField.ContentType.IntegerNumber) {
+			else if (m_InputField.contentType == InputField.ContentType.IntegerNumber)
+			{
 				mIMEWrapper.SetLocale(IMEManagerWrapper2.Locale.IntegerNumber);
 				mIMEWrapper.SetClickedCallback(InputClickCallbackImpl);
-			} else
+			}
+			else
 				mIMEWrapper.SetLocale(IMEManagerWrapper2.Locale.en_US);
 			mIMEWrapper.SetAction(IMEManagerWrapper2.Action.Enter);
 			mIMEWrapper.Show(mIsShowKeyboardInputPanel);
@@ -139,17 +143,15 @@ namespace Hubble.Launcher.Input
 				new System.NullReferenceException();
 				return;
 			}
-			
+
 			onInputClickedSB = new StringBuilder(""); // Vuplex not support API to  get the existing text of InputField web page.
-			// setCallbacks();
+													  // setCallbacks();
 			mIMEWrapper.SetText("");
 			mIMEWrapper.SetTitle("WvInput...");
 			mIMEWrapper.SetLocale(IMEManagerWrapper2.Locale.en_US);
 			mIMEWrapper.SetAction(IMEManagerWrapper2.Action.Enter);
 			mIMEWrapper.SetDoneCallback(InputDoneCallbackImpl);
 			// mIMEWrapper.SetClickedCallback(InputClickCallbackImpl);
-
-
 			m_Webview = webview;
 			m_Webview.WebView.SelectAll();
 			m_Webview.WebView.HandleKeyboardInput("Delete");
@@ -157,7 +159,6 @@ namespace Hubble.Launcher.Input
 			if (bDebug) Log.i(LOG_TAG, "showKeyboardOnWebview --");
 		}
 #endif
-
 		public void hideKeyboard()
 		{
 			if (bDebug) Log.i(LOG_TAG, "hideKeyboard");
@@ -171,7 +172,7 @@ namespace Hubble.Launcher.Input
 		public void InputDoneCallbackImpl(IMEManagerWrapper2.InputResult results)
 		{
 			if (bDebug) Log.d(LOG_TAG, "inputDoneCallbackImpl: " + results.GetContent());
-			if (m_InputField != null && m_InputField.contentType == TMP_InputField.ContentType.IntegerNumber) return;
+			if (m_InputField != null && m_InputField.contentType == InputField.ContentType.IntegerNumber) return;
 			mInputContent = results.GetContent();
 		}
 		public void InputClickCallbackImpl(IMEManagerWrapper2.InputResult results)
@@ -188,7 +189,7 @@ namespace Hubble.Launcher.Input
 					if (onInputClickedSB.Length > 1)
 					{
 						//mInputContent = (onInputClickedSB.Length - 1).ToString();
-						onInputClickedSB.Remove(onInputClickedSB.Length-1,1);
+						onInputClickedSB.Remove(onInputClickedSB.Length - 1, 1);
 						mInputContent = onInputClickedSB.ToString();
 					}
 					else if (onInputClickedSB.Length == 1)
@@ -232,7 +233,6 @@ namespace Hubble.Launcher.Input
 				if (bDebug) Log.d(LOG_TAG, "m_InputField=" + m_InputField + "   str=" + str);
 			}
 		}
-
 #if VUPLEX
 		private void UpdateWaveViewInputField(string str)
 		{
@@ -246,7 +246,7 @@ namespace Hubble.Launcher.Input
 			{
 				if (bDebug) Log.d(LOG_TAG, "m_Webview=" + m_Webview + "   str=" + str);
 			}
-	}
+		}
 #endif
 
 		static public bool findChildGO(GameObject currentGO, string childGO)
@@ -269,11 +269,9 @@ namespace Hubble.Launcher.Input
 			if (mInputContent != null)
 			{
 				UpdateInputField(mInputContent);
-
 #if VUPLEX
 				UpdateWaveViewInputField(mInputContent);
 #endif
-
 				mInputContent = null;
 			}
 		}

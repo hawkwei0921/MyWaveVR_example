@@ -1,0 +1,1 @@
+adb install app.apk && adb shell am start -n com.hawk.mywavevr_example/com.htc.vr.unity.WVRUnityVRActivity

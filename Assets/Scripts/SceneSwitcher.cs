@@ -1,4 +1,5 @@
 ﻿using HTC.UnityPlugin.Vive;
+using IngameDebugConsole;
 using RenderHeads.Media.AVProVideo;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,14 +68,18 @@ public class SceneSwitcher : MonoBehaviour
             debugFpsGO.SetActive(false);
 
         if (DebugMsg == 1)
-            debugMsgGO.SetActive(true);
-        else
-            debugMsgGO.SetActive(false);
+        {
+            if (DebugLogcat == 1)
+                DebugLogManager.s_receiveLogcatLogsInAndroid = true;
+            else
+                DebugLogManager.s_receiveLogcatLogsInAndroid = false;
 
-        if (DebugLogcat == 1)
-            debugLogcatGO.SetActive(true);
+            debugMsgGO.SetActive(true);
+        }
         else
-            debugLogcatGO.SetActive(false);
+        {
+            debugMsgGO.SetActive(false);
+        }
 
         if (DebugGraphy == 1)
             debugGraphyGO.SetActive(true);

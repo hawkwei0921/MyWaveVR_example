@@ -81,7 +81,7 @@ public class SettingsManager : MonoBehaviour
             debugLogcat_toggle.isOn = true;
         else
             debugLogcat_toggle.isOn = false;
-        debugFPS_toggle.onValueChanged.AddListener(OnDebugLogcatValueChanged);
+        debugLogcat_toggle.onValueChanged.AddListener(OnDebugLogcatValueChanged);
 
         if (DebugGraphy == 1)
             debugGraphy_toggle.isOn = true;
@@ -202,6 +202,12 @@ public class SettingsManager : MonoBehaviour
         else
             PlayerPrefs.SetString("Scene2Data", CONSTANTS.DEFAULT_Scene2Data);
 
+        PlayerPrefs.SetInt("DebugFPS",    (debugFPS_toggle.isOn == true) ? 1 : 0);
+        PlayerPrefs.SetInt("DebugMsg",    (debugMsg_toggle.isOn == true) ? 1 : 0);
+        PlayerPrefs.SetInt("DebugLogcat", (debugLogcat_toggle.isOn == true) ? 1 : 0);
+        PlayerPrefs.SetInt("DebugGraphy", (debugGraphy_toggle.isOn == true) ? 1 : 0);
+        PlayerPrefs.SetInt("DebugUtils",  (debugUtils_toggle.isOn == true) ? 1 : 0);
+
     }
 
     private void resetPrefs()
@@ -209,6 +215,12 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetString("Scene0Data", CONSTANTS.DEFAULT_Scene0Data);
         PlayerPrefs.SetString("Scene1Data", CONSTANTS.DEFAULT_Scene1Data);
         PlayerPrefs.SetString("Scene2Data", CONSTANTS.DEFAULT_Scene2Data);
+
+        PlayerPrefs.SetInt("DebugFPS", 0);
+        PlayerPrefs.SetInt("DebugMsg", 0);
+        PlayerPrefs.SetInt("DebugLogcat", 0);
+        PlayerPrefs.SetInt("DebugGraphy", 0);
+        PlayerPrefs.SetInt("DebugUtils", 0);
     }
 
 }
