@@ -15,13 +15,22 @@ public class SettingsManager : MonoBehaviour
     public TMP_InputField Scene2_text;
 
     public Toggle showUI_toggle;
-    public Toggle debugMode_toggle;
+    public Toggle debugFPS_toggle;
+    public Toggle debugMsg_toggle;
+    public Toggle debugLogcat_toggle;
+    public Toggle debugGraphy_toggle;
+    public Toggle debugUtils_toggle;
 
     int Scene0_enable = 1;
     int Scene1_enable = 1;
     int Scene2_enable = 1;
 
-    int DebugMode = 0;
+    int DebugFPS = 0;
+    int DebugMsg = 0;
+    int DebugLogcat = 0;
+    int DebugGraphy = 0;
+    int DebugUtils = 0;
+
     int showUI = 0;
 
     private void Start()
@@ -31,49 +40,80 @@ public class SettingsManager : MonoBehaviour
     }
 
     private void initUIs() {
+        if (showUI == 1)
+            showUI_toggle.isOn = true;
+        else
+            showUI_toggle.isOn = false;
+        showUI_toggle.onValueChanged.AddListener(OnShowUIValueChanged);
+
         if (Scene0_enable == 1)
             Scene0_toggle.isOn = true;
         else
             Scene0_toggle.isOn = false;
-
         Scene0_toggle.onValueChanged.AddListener(OnScene0ToggleValueChanged);
 
         if (Scene1_enable == 1)
             Scene1_toggle.isOn = true;
         else
             Scene1_toggle.isOn = false;
-
         Scene1_toggle.onValueChanged.AddListener(OnScene1ToggleValueChanged);
 
         if (Scene2_enable == 1)
             Scene2_toggle.isOn = true;
         else
             Scene2_toggle.isOn = false;
-
         Scene2_toggle.onValueChanged.AddListener(OnScene2ToggleValueChanged);
 
 
-        if (DebugMode == 1)
-            debugMode_toggle.isOn = true;
+        if (DebugFPS == 1)
+            debugFPS_toggle.isOn = true;
         else
-            debugMode_toggle.isOn = false;
+            debugFPS_toggle.isOn = false;
+        debugFPS_toggle.onValueChanged.AddListener(OnDebugFPSValueChanged);
 
-        debugMode_toggle.onValueChanged.AddListener(OnDebugModeValueChanged);
-
-        if (showUI == 1)
-            showUI_toggle.isOn = true;
+        if (DebugMsg == 1)
+            debugMsg_toggle.isOn = true;
         else
-            showUI_toggle.isOn = false;
+            debugMsg_toggle.isOn = false;
+        debugMsg_toggle.onValueChanged.AddListener(OnDebugMsgValueChanged);
 
-        showUI_toggle.onValueChanged.AddListener(OnShowUIValueChanged);
+        if (DebugLogcat == 1)
+            debugLogcat_toggle.isOn = true;
+        else
+            debugLogcat_toggle.isOn = false;
+        debugFPS_toggle.onValueChanged.AddListener(OnDebugLogcatValueChanged);
+
+        if (DebugGraphy == 1)
+            debugGraphy_toggle.isOn = true;
+        else
+            debugGraphy_toggle.isOn = false;
+        debugGraphy_toggle.onValueChanged.AddListener(OnDebugGraphyValueChanged);
+
+        if (DebugUtils == 1)
+            debugUtils_toggle.isOn = true;
+        else
+            debugUtils_toggle.isOn = false;
+        debugUtils_toggle.onValueChanged.AddListener(OnDebugUtilsValueChanged);
+
     }
 
     private void loadPrefs() {
+        showUI = PlayerPrefs.GetInt("ShowUI");
+
         Scene0_text.text = PlayerPrefs.GetString("Scene0Data");
         Scene1_text.text = PlayerPrefs.GetString("Scene1Data");
         Scene2_text.text = PlayerPrefs.GetString("Scene2Data");
-        DebugMode = PlayerPrefs.GetInt("DebugMode");
-        showUI = PlayerPrefs.GetInt("ShowUI");
+
+        DebugFPS = PlayerPrefs.GetInt("DebugFPS");
+        DebugMsg = PlayerPrefs.GetInt("DebugMsg");
+        DebugLogcat = PlayerPrefs.GetInt("DebugLogcat");
+        DebugGraphy = PlayerPrefs.GetInt("DebugGraphy");
+        DebugUtils = PlayerPrefs.GetInt("DebugUtils");
+    }
+
+    private void OnShowUIValueChanged(bool value)
+    {
+        PlayerPrefs.SetInt("ShowUI", Convert.ToInt32(value));
     }
 
     private void OnScene0ToggleValueChanged(bool value)
@@ -91,14 +131,26 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt("Scene2_enable", Convert.ToInt32(value));
     }
 
-    private void OnDebugModeValueChanged(bool value) {
-        PlayerPrefs.SetInt("DebugMode", Convert.ToInt32(value));
+    private void OnDebugFPSValueChanged(bool value) {
+        PlayerPrefs.SetInt("DebugFPS", Convert.ToInt32(value));
+    }
+    private void OnDebugMsgValueChanged(bool value)
+    {
+        PlayerPrefs.SetInt("DebugMsg", Convert.ToInt32(value));
+    }
+    private void OnDebugLogcatValueChanged(bool value)
+    {
+        PlayerPrefs.SetInt("DebugLogcat", Convert.ToInt32(value));
+    }
+    private void OnDebugGraphyValueChanged(bool value)
+    {
+        PlayerPrefs.SetInt("DebugGraphy", Convert.ToInt32(value));
+    }
+    private void OnDebugUtilsValueChanged(bool value)
+    {
+        PlayerPrefs.SetInt("DebugUtils", Convert.ToInt32(value));
     }
 
-    private void OnShowUIValueChanged(bool value)
-    {
-        PlayerPrefs.SetInt("ShowUI", Convert.ToInt32(value));
-    }    
 
     public void onClickSave() {
         savePrefs();

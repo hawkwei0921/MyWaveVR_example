@@ -11,7 +11,6 @@ public class SceneSwitcher : MonoBehaviour
     public GameObject loadingIconGO;
     public GameObject exitProgressbarGO;
 
-    public GameObject debugModeCanvas;
     public GameObject RightControllerUiReticleGO;
     public GameObject RightControllerUiLineGO;
     public GameObject LeftControllerUiReticleGO;
@@ -19,11 +18,22 @@ public class SceneSwitcher : MonoBehaviour
 
     public GameObject UIpanelsGO;
 
-    int DebugMode = 0;
     int showUI = 1;
     int Scene0_enable = 1;
     int Scene1_enable = 1;
     int Scene2_enable = 1;
+
+    int DebugFPS = 0;
+    int DebugMsg = 0;
+    int DebugLogcat = 0;
+    int DebugGraphy = 0;
+    int DebugUtils = 0;
+
+    public GameObject debugFpsGO;
+    public GameObject debugMsgGO;
+    public GameObject debugLogcatGO;
+    public GameObject debugGraphyGO;
+    public GameObject debugUtilsGO;
 
     // Start is called before the first frame update
     void Start()
@@ -38,18 +48,44 @@ public class SceneSwitcher : MonoBehaviour
 
     private void loadPrefs()
     {
-        DebugMode = PlayerPrefs.GetInt("DebugMode");
         showUI = PlayerPrefs.GetInt("ShowUI");
         Scene0_enable = PlayerPrefs.GetInt("Scene0_enable");
         Scene1_enable = PlayerPrefs.GetInt("Scene1_enable");
         Scene2_enable = PlayerPrefs.GetInt("Scene2_enable");
+
+        DebugFPS = PlayerPrefs.GetInt("DebugFPS");
+        DebugMsg = PlayerPrefs.GetInt("DebugMsg");
+        DebugLogcat = PlayerPrefs.GetInt("DebugLogcat");
+        DebugGraphy = PlayerPrefs.GetInt("DebugGraphy");
+        DebugUtils  = PlayerPrefs.GetInt("DebugUtils");
     }
 
     private void initUIs() {
-        if (DebugMode == 1)
-            debugModeCanvas.SetActive(true);
+        if (DebugFPS == 1)
+            debugFpsGO.SetActive(true);
         else
-            debugModeCanvas.SetActive(false);
+            debugFpsGO.SetActive(false);
+
+        if (DebugMsg == 1)
+            debugMsgGO.SetActive(true);
+        else
+            debugMsgGO.SetActive(false);
+
+        if (DebugLogcat == 1)
+            debugLogcatGO.SetActive(true);
+        else
+            debugLogcatGO.SetActive(false);
+
+        if (DebugGraphy == 1)
+            debugGraphyGO.SetActive(true);
+        else
+            debugGraphyGO.SetActive(false);
+
+        if (DebugUtils == 1)
+            debugUtilsGO.SetActive(true);
+        else
+            debugUtilsGO.SetActive(false);
+
 
         if (showUI == 1)
         {

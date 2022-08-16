@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 public class CONSTANTS
 {
     public const string TAG = "MyWaveVR";
-    public const int DEFAULT_DEBUGMODE = 0;
+    public const int DEFAULT_DEBUGMSG = 0;
     public const string DEFAULT_Scene0Data = "Default scene0 data";
     public const string DEFAULT_Scene1Data = "Default scene1 data";
     public const string DEFAULT_Scene2Data = "Default scene2 data";
